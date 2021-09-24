@@ -1,0 +1,22 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">View More</li>
+  </ol>
+</nav>
+
+{{#each rows}}
+<dl class="row">
+    <dt class="col-sm-3">ID:</dt>
+  <dd class="col-sm-9">{{this.id}}</dd>
+
+  <dt class="col-sm-3">Title:</dt>
+  <dd class="col-sm-9">{{this.title}}</dd>
+
+  <dt class="col-sm-3">Year:</dt>
+  <dd class="col-sm-9">{{this.year}}</dd>
+
+  <dt class="col-sm-3">Description</dt>
+  <dd class="col-sm-9">{{this.description}}</dd>  
+</dl>
+{{/each}}
