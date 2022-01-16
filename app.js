@@ -20,7 +20,7 @@ app.engine('hbs', hbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
 // use route in express
-const routes = require('../V3/serrver/routes/movies')
+const routes = require('./server/routes/movies')
 app.use('/', routes)
 
 //run app.js as backend server

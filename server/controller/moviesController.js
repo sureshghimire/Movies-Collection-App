@@ -26,7 +26,7 @@ exports.showAll = (req, res) => {
 
             //render the home pae
             let removedMovie = req.query.removed;
-            console.log(removedMovie)
+           
             res.render('home', { rows, removedMovie })
         })
     })
@@ -74,7 +74,7 @@ exports.create = (req, res) => {
         console.log('Connected at', connection.threadId);
 
         //make query on existing connection
-        connection.query('INSERT INTO movies SET title =?, year=?', [title, year, description], (error, rows) => {
+        connection.query('INSERT INTO movies SET title =?, year=?, description=?', [title, year, description], (error, rows) => {
 
             //relase connection
             connection.release();
@@ -202,6 +202,7 @@ exports.view = (req, res) => {
         //get query from database
         connection.query('SELECT * FROM movies WHERE id =?',req.params.id, (error, rows)=>{
             //release connection
+            connection.release()
             if(!error){
                 res.render('view_record', {rows})
             }else{
@@ -209,4 +210,28 @@ exports.view = (req, res) => {
             }
         })
     })
+ }
+
+ //endpoint api link
+ exports.api = (req,res)=>{
+    
+    //get connection from the pool
+    pool.getConnection((error, connection)=>{
+        //make query
+        connection.query('SELECT * FROM movies', (error, rows)=>{
+            //connection relase
+
+            connection.release()
+
+            //send data on API format
+            res.send(rows)
+
+        })
+    })
+
+ }
+
+ //get power BI report
+ exports.report = (req, res)=>{
+     res.render('dashboard')
  }

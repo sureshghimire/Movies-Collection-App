@@ -11,7 +11,10 @@ router.post('/add', moviesController.create)   //create new movie records
 router.get('/edit/:id', moviesController.edit)  //get the edit from to update the record from the table
 router.post('/edit/:id', moviesController.update)   //post the edited record and update //use PUT method on POSTMAN
 router.get('/remove/:id', moviesController.remove)      //remove the record from the database      //use DELETE method 
-router.get('/:id', moviesController.view)       //view more details about the records
+router.get('/view/:id', moviesController.view)       //view more details about the records
+
+router.get('/list', moviesController.api)   //api to send the data
+router.get('/report', moviesController.report)     //display Power BI report
 
 module.exports= router;
 
